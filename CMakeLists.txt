@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.5)
 
 project(minmea)
 
@@ -9,9 +9,12 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D_POSIX_C_SOURCE=199309L -D_BSD_SOURCE -D_D
 
 set(minmea_SRCS minmea.c minmea.h)
 add_library(minmea ${minmea_SRCS})
+target_include_directories(minmea PUBLIC 
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
-add_executable(example example.c)
-target_link_libraries(example minmea)
+# add_executable(example example.c)
+# target_link_libraries(example minmea)
 
 if (MINMEA_ENABLE_TESTING)
     enable_testing()
